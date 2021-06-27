@@ -130,9 +130,11 @@ ill_school <- ill_demo %>%
   mutate(SATtotal = `SAT Reading Average` + `SAT Math Average`) %>% 
    select(RCDTS, SATtotal)) %>% 
   mutate(Chicago = case_when(City == "Chicago" ~ 1, 
-                              T ~ 0)) 
+                              T ~ 0)) %>% 
+  mutate(SchoolName2 = case_when(is.na(SchoolName) ~ District,
+                                 T ~ SchoolName))
 
-  
+write.csv(ill_school, "ChicagoMetroScools.csv")
 
 #### Plots ####
 
